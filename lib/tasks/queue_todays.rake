@@ -3,7 +3,7 @@ namespace :jobs do
   task :queue_todays, [:day] => :environment do |t, args|
     subject = "Your BackTracks for the Week"
     p = args[:day] || Time.now.wday
-    users = Users.where('id % ? = 0', p)
+    users = Users.where('id % ? = 0', p).and(send_weekly_email: true)
 
     users.each do |u|
       Resque.enqueue(Email::Sender, u, subject)
