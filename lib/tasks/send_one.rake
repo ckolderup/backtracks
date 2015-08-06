@@ -5,3 +5,4 @@ namespace :email do
     Email::Sender.send_email(args[:email], subject,
                              Email::Compiler.chart_v1(args[:username]))
   end
+end

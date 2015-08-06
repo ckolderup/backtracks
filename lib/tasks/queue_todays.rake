@@ -1,4 +1,4 @@
-namespace :jobs
+namespace :jobs do
   desc "Finds the users to send the weekly email to and queues a job for each"
   task :queue_todays, [:day] => :environment do |t, args|
     subject = "Your BackTracks for the Week"
