@@ -19,8 +19,12 @@ module LastFm
       format = param[:format]
 
       begin
-        response = @lastfm.user.send(method, :user => user, :from => from, :to => to).andand.take(chart_size)
-        response.andand.map { |item| send(format, item) }
+        response = @lastfm.user.send(method, :user => user, :from => from, :to => to).take(chart_size)
+        if response.present?
+          response.take(chart_size).map { |item| send(format, item) }
+        else
+          []
+        end
       rescue
         []
       end

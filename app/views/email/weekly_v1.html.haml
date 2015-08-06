@@ -8,16 +8,16 @@
       Yes indeed, here we are... time for your weekly BackTracks email!
       Questions? Comments? Wanna say hello? Just hit reply!
 
-    - years.andand.each do |year|
-      - next if year[:album_rows].andand.empty?
+    - years.each do |year|
+      - next if year[:album_rows].empty?
       %h2= "#{Time.now.strftime('%B')} #{Time.now.year - year[:num]}"
 
       %h3 Albums
 
       %table
-        - year[:album_rows].andand.each do |row|
+        - year[:album_rows].each do |row|
           %tr
-            - row[:albums].andand.each do |album|
+            - row[:albums].each do |album|
               - album_text = "#{album.artist} - #{album.title}"
               %td
                 %a{:href => album.url}
@@ -31,22 +31,22 @@
             %h3 Tracks
         %tr
           %td{:width => 275}
-            - if year[:artists].andand.empty?
+            - if year[:artists].empty?
               %center
                 %small No Data
             - else
               %ol
-                - year[:artists].andand.each do |artist|
+                - year[:artists].each do |artist|
                   %li
                     %a{:href => artist.url}
                       = artist.name
           %td{:width => 275}
-            - if year[:tracks].andand.empty?
+            - if year[:tracks].empty?
               %center
                 %small No Data
             - else
               %ol
-                - year[:tracks].andand.each do |track|
+                - year[:tracks].each do |track|
                   %li
                     %a{:href => track.url}
                       = "#{track.artist} - #{track.title}"

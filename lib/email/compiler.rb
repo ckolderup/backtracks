@@ -28,7 +28,7 @@ module Email
         years_ago += 1
       end
 
-      unless years.select { |y| !y[:album_rows].andand.empty? }.andand.empty?
+      if years.select { |y| y[:album_rows].present? }.present?
         ActionView::Base.new('app/views/email').render(file: 'weekly_v1')
       end
     end
