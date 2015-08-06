@@ -1,4 +1,4 @@
-ruby '2.2.2'
+ruby '2.1.2'
 source 'https://rubygems.org'
 
 
@@ -40,8 +40,6 @@ gem 'foreman'
 
 gem 'redis'
 gem 'resque'
-
-gem 'haml'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
