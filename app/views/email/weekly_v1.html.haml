@@ -1,0 +1,56 @@
+%html
+  %body{:style => "width: 550px; margin: 10px auto"}
+    %a{:href => "http://backtracks.co"}
+      %center
+        %h1 BackTracks
+
+    %div{:style => "width:550px"}
+      Yes indeed, here we are... time for your weekly BackTracks email!
+      Questions? Comments? Wanna say hello? Just hit reply!
+
+    - years.andand.each do |year|
+      - next if year[:album_rows].andand.empty?
+      %h2= "#{Time.now.strftime('%B')} #{Time.now.year - year[:num]}"
+
+      %h3 Albums
+
+      %table
+        - year[:album_rows].andand.each do |row|
+          %tr
+            - row[:albums].andand.each do |album|
+              - album_text = "#{album.artist} - #{album.title}"
+              %td
+                %a{:href => album.url}
+                  %img{:src => album.cover, :width => 160, :height => 160, :alt => album_text, :title => album_text }
+
+      %table
+        %tr
+          %th{:width => 275}
+            %h3 Artists
+          %th{:width => 275}
+            %h3 Tracks
+        %tr
+          %td{:width => 275}
+            - if year[:artists].andand.empty?
+              %center
+                %small No Data
+            - else
+              %ol
+                - year[:artists].andand.each do |artist|
+                  %li
+                    %a{:href => artist.url}
+                      = artist.name
+          %td{:width => 275}
+            - if year[:tracks].andand.empty?
+              %center
+                %small No Data
+            - else
+              %ol
+                - year[:tracks].andand.each do |track|
+                  %li
+                    %a{:href => track.url}
+                      = "#{track.artist} - #{track.title}"
+
+    %div{:style => "font-size: 10px"}
+      You can unsubscribe from your <a href="http://backtracks.co/account">Account</a> page. |
+      Feedback? Just reply to this email.                                                    |
