@@ -18,13 +18,13 @@ module Email
           plural: (years_ago == 1)? "" : "s",
           album_rows:
             albums.nil? ? [] : albums.each_slice(@@CHART_SIZE / @@ROWS).map { |row|
-              { albums: row } 
+              { albums: row }
             },
           artists: artists,
           tracks: tracks
         }
 
-        years << result if albums && albums.size >= 3
+        years << result if albums.present? && albums.size >= 3
         years_ago += 1
       end
 
