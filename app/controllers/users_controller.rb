@@ -20,10 +20,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      cookies.permanent.signed[:user_id] = @user.id
+    user = User.new(user_params)
+    if user.save
+      cookies.permanent.signed[:user_id] = user.id
       flash[:message] = "Signed up!"
+
+      Resque.enqueue(Email::Sender, user, "Your First Backtracks Email")
+
       redirect_to account_path
     else
       render "new"
