@@ -29,7 +29,8 @@ module Email
       end
 
       if years.select { |y| y[:album_rows].present? }.present?
-        ActionView::Base.new('app/views/email').render(file: 'weekly_v1')
+        ActionView::Base.new('app/views/email').render(file: 'weekly_v1',
+          locals: {years: years})
       end
     end
   end

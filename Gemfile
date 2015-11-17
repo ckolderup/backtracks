@@ -42,6 +42,10 @@ gem 'foreman'
 gem 'redis'
 gem 'resque'
 
+gem 'nokogiri', '~> 1.5.11'
+gem 'haml'
+gem 'haml-rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
