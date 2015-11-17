@@ -13,13 +13,17 @@ module LastFm
       format = param[:format]
 
       begin
-        response = LastFM::User.send(method, :user => user, :from => from, :to => to).take(chart_size)
+        response = LastFM::User.send(method, :user => user, :from => from, :to => to)
         if response.present?
-          response.take(chart_size).map { |item| send(format, item) }
+          # .first.first bullshit thanks to the new lastfm API response changes
+          # TODO: clean this up, ideally with ruby 2.3 and Hash#dig
+          artists = response.values.first.values.first
+          artists.take(chart_size).map { |item| send(format, item) }
         else
           []
         end
-      rescue
+      rescue StandardError => error
+        # TODO: send to some sort of logger
         []
       end
     end
@@ -29,19 +33,19 @@ module LastFm
     end
 
     def new_album(album)
-      response = @lastfm.album.get_info(:artist => album['artist']['content'],
+      response = LastFM::Album.get_info(:artist => album['artist']['#text'],
                              :album => album['name'],
                              :mbid => album['mbid'],
                              :url => album['url'])
-      Album.new(:title => response['name'],
-                :artist => response['artist'],
-                :url => response['url'],
-                :cover => (response['image'].select{|img| img['size'] == 'large'}.first)['content'])
+      Album.new(:title => album['name'],
+                :artist => album['artist'],
+                :url => album['url'],
+                :cover => (response['album']['image'].select{|img| img['size'] == 'large'}.first)['#text'])
     end
 
     def new_track(track)
       Track.new(:title => track['name'],
-                :artist => track['artist']['content'],
+                :artist => track['artist']['#text'],
                 :url => track['url'])
     end
 
@@ -53,7 +57,11 @@ module LastFm
       last_year = Time.now - (years_ago * 365 * 24 * 60 * 60)
 
       #TODO: factor this out so it's not being repeated for every year
-      chart = @lastfm.user.get_weekly_chart_list(:user => user).select { |c|
+      response = LastFM::User.get_weekly_chart_list(:user => user)
+
+      charts = response["weeklychartlist"] && response["weeklychartlist"]["chart"]
+
+      chart = charts.select { |c|
         c['from'].to_i <= last_year.to_i && c['to'].to_i >= last_year.to_i
       }.first
 
