@@ -33,7 +33,8 @@ gem 'bcrypt', '~> 3.1.7'
 # Use unicorn as the app server
 gem 'unicorn'
 
-gem 'lastfm'
+gem 'lastfm-client', :git => 'http://github.com/pch/lastfm-client.git'
+
 gem 'mandrill-api'
 gem 'pg'
 gem 'foreman'

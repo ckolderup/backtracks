@@ -4,12 +4,6 @@ module LastFm
     LASTFM_ALBUM = "get_weekly_album_chart"
     LASTFM_TRACK = "get_weekly_track_chart"
 
-    @lastfm = nil
-
-    def initialize
-      @lastfm = Lastfm.new(ENV['LASTFM_KEY'], ENV['LASTFM_SECRET'])
-    end
-
     def fetch_chart(param = {})
       method = param[:method]
       user = param[:user]
@@ -19,7 +13,7 @@ module LastFm
       format = param[:format]
 
       begin
-        response = @lastfm.user.send(method, :user => user, :from => from, :to => to).take(chart_size)
+        response = LastFM::User.send(method, :user => user, :from => from, :to => to).take(chart_size)
         if response.present?
           response.take(chart_size).map { |item| send(format, item) }
         else
