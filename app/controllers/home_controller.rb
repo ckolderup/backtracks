@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   end
 
   def latest
-    if current_user.last_email_contents.blank?
+    if current_user.last_email_contents.blank? || params[:force]
       html = Email::Compiler.chart_v1(current_user.lastfm_username)
       current_user.update(last_email_contents: html)
     end
