@@ -20,7 +20,7 @@ module Email
       config = {
         :html => body,
         :from_email => "feedback@backtracks.co",
-        :from_name => "BackTracks",
+        :from_name => "Backtracks",
         :subject => subject,
         :to => [ {:email => email_address} ],
         :async => true
