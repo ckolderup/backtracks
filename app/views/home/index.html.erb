@@ -15,11 +15,17 @@
     <div class="four columns">&nbsp;</div>
   </div>
 
-  <div class="row">
-    Sign up now to start getting emails today!
-  </div>
+  <% if current_user %>
+    <div class="row">
+      <%= link_to 'Manage Account', account_path, class: 'button button-primary' %>
+    </div>
+  <% else %>
+    <div class="row">
+      Sign up now to start getting emails today!
+    </div>
 
-  <div class="row">
-    <%= link_to 'Sign Up', sign_up_path, class: 'button button-primary' %>
-  </div>
+    <div class="row">
+      <%= link_to 'Sign Up', sign_up_path, class: 'button button-primary' %>
+    </div>
+  <% end %>
 </div>
