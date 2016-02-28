@@ -30,7 +30,7 @@
               <% album_text = "#{album.artist} - #{album.title}" %>
               <td>
                 <a href="<%= album.url %>">
-                  <img alt="<%= album_text %>" height="160" src="<%= album.cover %>" title="<%= album_text %>" width="160"/>
+                  <%= image_tag album.cover, alt: album_text, height: 160, title: album_text, width: 160 %>
                 </a>
               </td>
             <% end %>

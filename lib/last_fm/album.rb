@@ -6,9 +6,8 @@ module LastFm
     attr_reader :url
 
     def initialize(param = {})
-      param[:cover] ||= "http://placekitten.com/174/174"
       @title = param[:title]
-      @cover = param[:cover]
+      @cover = param[:cover].present? ? param[:cover] : 'backtracks-greyscale-medium.png'
       @artist = param[:artist]
       @url = param[:url]
       @url = "http://#{@url}" unless @url.start_with?("http://")
