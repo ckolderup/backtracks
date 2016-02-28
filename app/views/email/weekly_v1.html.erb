@@ -1,0 +1,92 @@
+<html>
+  <body style="width: 550px; margin: 10px auto">
+    <a href="http://backtracks.co">
+      <center>
+        <h1>BackTracks</h1>
+      </center>
+    </a>
+    <div style="width:550px">
+      Hi everyone! Hopefully everything looks pretty similar, but
+      the email you're looking at is coming from the 2016 edition
+      of Backtracks, and the hope is that it'll be more reliable
+      and easier to investigate any issues if they pop up. If
+      anything seems weird, please let me know ASAP so I can look
+      into it! Thanks a lot for your patience; I'm really excited
+      to bring you some new features soon now that the foundation
+      is more solid.
+      Questions? Comments? Wanna say hello? Just hit reply!
+      \-your pal @ckolderup
+    </div>
+    <% years.each do |year| %>
+      <% next if year[:album_rows].empty? %>
+      <h2>
+        <%= "#{Time.now.strftime('%B')} #{Time.now.year - year[:num]}" %>
+      </h2>
+      <h3>Albums</h3>
+      <table>
+        <% year[:album_rows].each do |row| %>
+          <tr>
+            <% row[:albums].each do |album| %>
+              <% album_text = "#{album.artist} - #{album.title}" %>
+              <td>
+                <a href="<%= album.url %>">
+                  <img alt="<%= album_text %>" height="160" src="<%= album.cover %>" title="<%= album_text %>" width="160"/>
+                </a>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+      <table>
+        <tr>
+          <th width="275">
+            <h3>Artists</h3>
+          </th>
+          <th width="275">
+            <h3>Tracks</h3>
+          </th>
+        </tr>
+        <tr>
+          <td width="275">
+            <% if year[:artists].empty? %>
+              <center>
+                <small>No Data</small>
+              </center>
+            <% else %>
+              <ol>
+                <% year[:artists].each do |artist| %>
+                  <li>
+                    <a href="<%= artist.url %>">
+                      <%= artist.name %>
+                    </a>
+                  </li>
+                <% end %>
+              </ol>
+            <% end %>
+          </td>
+          <td width="275">
+            <% if year[:tracks].empty? %>
+              <center>
+                <small>No Data</small>
+              </center>
+            <% else %>
+              <ol>
+                <% year[:tracks].each do |track| %>
+                  <li>
+                    <a href="<%= track.url %>">
+                      <%= "#{track.artist} - #{track.title}" %>
+                    </a>
+                  </li>
+                <% end %>
+              </ol>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+    <div style="font-size: 10px">
+      You can unsubscribe from your <a href="http://backtracks.co/account">Account</a> page.
+      Feedback? Just reply to this email.
+    </div>
+  </body>
+</html>
