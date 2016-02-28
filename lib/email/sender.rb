@@ -8,7 +8,9 @@ module Email
       raise "no email address" unless user["email"].present?
       raise "no lastfm username" unless user["lastfm_username"].present?
 
-      send_email(user["email"], subject, Email::Compiler.chart_v1(user["lastfm_username"]))
+      body = Email::Compiler.chart_v1(user['lastfm_username'])
+      send_email(user["email"], subject, body)
+      user.update(last_email_contents: body)
     end
 
     def self.send_email(email_address, subject, body)

@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get "account" => "users#edit", as: "account"
   patch "account" => "users#update", as: "account_update"
 
+  get "latest" => "home#latest"
+
   root to: "home#index"
 
   resources :sessions
