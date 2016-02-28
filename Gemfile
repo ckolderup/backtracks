@@ -43,8 +43,6 @@ gem 'redis'
 gem 'resque'
 
 gem 'nokogiri', '~> 1.5.11'
-gem 'haml'
-gem 'haml-rails'
 
 gem 'skeleton-rails', '~> 1.0', :git => 'https://github.com/helios-technologies/skeleton-rails.git'
 
