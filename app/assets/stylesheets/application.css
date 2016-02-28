@@ -12,4 +12,28 @@
  *
  *= require_tree .
  *= require_self
+ *= require normalize
+ *= require skeleton
  */
+
+.header {
+  padding-top: 10px;
+  padding-bottom: 30px;
+  height: 100px;
+}
+
+.name {
+  line-height: 48px;
+  font-size: 48px;
+  margin-top: 32px;
+}
+
+.nav {
+  line-height: 14px;
+  margin-top: 66px;
+  text-align: right;
+}
+
+.footer {
+  text-align: center;
+}
