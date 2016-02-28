@@ -38,7 +38,7 @@ module LastFm
                              :mbid => album['mbid'],
                              :url => album['url'])
       Album.new(:title => album['name'],
-                :artist => album['artist'],
+                :artist => album['artist']['#text'],
                 :url => album['url'],
                 :cover => (response['album']['image'].select{|img| img['size'] == 'large'}.first)['#text'])
     end
