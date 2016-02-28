@@ -9,8 +9,8 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def authorize
-    unless current_user && current_user.admin?
+  def ensure_logged_in
+    unless current_user
       flash[:error] = "Unauthorized access"
       redirect_back_or_default(root_path)
       false
