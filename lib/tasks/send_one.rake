@@ -8,7 +8,7 @@ namespace :email do
   desc "Send a test email for a given lastfm username (EMAIL=, USERNAME=)"
   task :send_test => :environment do |t, args|
     subject = 'Backtracks Email'
-    Email::Sender.send_email(ENV['EMAIL'], subject,
-                             Email::Compiler.chart_v1(ENV['USERNAME']))
+    body = Email::Compiler.chart_v1(ENV['USERNAME'])[:email]
+    Email::Sender.send_email(ENV['EMAIL'], subject, body)
   end
 end

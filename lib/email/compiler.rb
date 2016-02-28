@@ -29,9 +29,17 @@ module Email
       end
 
       if years.select { |y| y[:album_rows].present? }.present?
-        ActionView::Base.new('app/views/email').render(file: 'weekly_v1',
-          locals: {years: years})
+        {
+          email: render_local('weekly_v1', {years: years}),
+          chart: render_local('_chart_v1', {years: years})
+        }
+      else
+        {}
       end
+    end
+
+    def self.render_local(file, locals)
+      ActionView::Base.new('app/views/email').render(file: file, locals: locals)
     end
   end
 end
