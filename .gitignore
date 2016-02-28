@@ -15,4 +15,5 @@
 /log/*.log
 /tmp
 
+config/secrets.yml
 .env
