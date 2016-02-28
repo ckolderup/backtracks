@@ -10,32 +10,51 @@
     </div>
   <% end %>
   <%= f.hidden_field :id %>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :display_name %>
-  <p>
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :lastfm_username %><br />
-    <%= f.text_field :lastfm_username %>
-  </p>
-  <p>
-    <%= f.label :send_weekly_email %>
-    <%= f.check_box :send_weekly_email %>
-  <p>
-    <%= f.label :password %>
-    <%= "(leave blank if unchanged)" if @updating %>
-    <br />
-    <%= f.password_field :password, autocomplete: 'off'%>
-  </p>
-  <p>
-  <%= f.label :password_confirmation %>
-  <%= "(leave blank if unchanged)" if @updating %>
-  <br />
-    <%= f.password_field :password_confirmation, autocomplete: 'off' %>
-  </p>
-  <p><%= f.submit user_form_submit_button_text, class: 'button button-primary' %></p>
+
+  <div class="row">
+    <div class="four columns">
+      <%= f.label :display_name, 'Name' %>
+      <%= f.text_field :display_name, class: 'u-full-width' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="four columns">
+      <%= f.label :email, 'Email address' %>
+      <%= f.text_field :email, class: 'u-full-width' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="three columns">
+      <%= f.label :lastfm_username, 'last.fm username' %>
+      <%= f.text_field :lastfm_username, class: 'u-full-width' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="three columns">
+    <%= f.label :send_weekly_email do %>
+        <%= f.check_box :send_weekly_email %>
+        Send weekly email
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="three columns">
+      <%= f.label :password %>
+      <%= f.password_field :password, autocomplete: 'off', placeholder: @updating ? '(leave blank if unchanged)' : '', class: 'u-full-width' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="three columns">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, autocomplete: 'off', placeholder: @updating ? '(leave blank if unchanged)' : '', class: 'u-full-width' %>
+    </div>
+  </div>
+
+  <%= f.submit user_form_submit_button_text, class: 'button button-primary' %>
 <% end %>
 
