@@ -1,14 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>BacktracksRails</title>
+  <title>Backtracks</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+<div class="container">
+  <div class="row header">
+    <div class="two columns logo">
+      <%= link_to image_tag('backtracks-small.png'), root_path %>
+    </div>
+    <div class="six columns name">
+      <%= link_to('Backtracks', root_path) %>
+    </div>
+    <div class="four columns nav">
+      <% if current_user.present? %>
+        <%= link_to 'Account', account_path %>
+        <%= link_to 'Log out', log_out_path %>
+      <% else %>
+        <%= link_to 'Log In', log_in_path %>
+      <% end %>
+    </div>
+  </div>
+
+  <%= yield %>
+
+  <div class="row">
+    <div class="two columns">&nbsp;</div>
+    <div class="eight columns footer">
+      This is a <a href="http://casey.kolderup.org">@ckolderup</a> project! Follow <a href="http://twitter.com/backtracks_co">@backtracks_co</a> on Twitter for news and status updates.
+    </div>
+    <div class="two columns">&nbsp;</div>
+  </div>
+</div>
 
 </body>
 </html>

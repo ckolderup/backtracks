@@ -1,6 +1,25 @@
-<% if current_user.present? %>
-  <%= link_to 'Account', account_path %>
-  <%= link_to 'Log out', log_out_path %>
-<% else %>
-  <%= link_to 'Log In', log_in_path %>
-<% end %>
+<div class="copy">
+  <div class="row">
+    Welcome to Backtracks, an email service that uses your last.fm history to help you discover the music that's been important to you in the past.
+  </div>
+
+  <div class="row">
+    Once a week, we'll send you an email that shows you the albums, artists and songs that you listened to the most at this time of year in your past.
+  </div>
+
+  <div class="row">
+    <div class="four columns">&nbsp;</div>
+    <div class="four columns">
+      <%= image_tag('example-email.png', class: 'u-max-full-width') %>
+    </div>
+    <div class="four columns">&nbsp;</div>
+  </div>
+
+  <div class="row">
+    Sign up now to start getting emails today!
+  </div>
+
+  <div class="row">
+    <%= link_to 'Sign Up', sign_up_path, class: 'button button-primary' %>
+  </div>
+</div>
