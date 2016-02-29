@@ -1,6 +1,6 @@
 module Email
   class Sender
-    require 'mandrill'
+    require 'mailgun'
 
     @queue = 'weekly'
 
@@ -16,16 +16,17 @@ module Email
     def self.send_email(email_address, subject, body)
       raise "empty email" if body.nil?
 
+      client = Mailgun::Client.new ENV['MAILGUN_API_KEY']
+
       mailer = Mandrill::API.new ENV['MANDRILL_API_KEY']
       config = {
         :html => body,
-        :from_email => "feedback@backtracks.co",
-        :from_name => "Backtracks",
+        :from => "Backtracks <feedback@backtracks.co>",
         :subject => subject,
-        :to => [ {:email => email_address} ],
-        :async => true
+        :to => email_address
       }
-      result = mailer.messages.send(config)
+
+      result = client.send_message "backtracks.co", config
       (result.first)[:status] == "sent"
     end
   end
