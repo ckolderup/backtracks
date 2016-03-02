@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   before_save :encrypt_password
   before_save :downcase_email
+  before_update { |user| user.bump_last_email_updated if user.last_email_contents_changed? }
   before_create :generate_slug
 
   validates_confirmation_of :password
@@ -37,5 +38,9 @@ class User < ActiveRecord::Base
 
   def generate_slug
     self.slug = Base64.encode64(SecureRandom.uuid)[0..10]
+  end
+
+  def bump_last_email_updated
+    self.last_email_updated_at = DateTime.now
   end
 end
