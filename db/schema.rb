@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160228074222) do
+ActiveRecord::Schema.define(version: 20160229230816) do
 
   create_table "users", force: true do |t|
     t.string   "email"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20160228074222) do
     t.string   "lastfm_username"
     t.boolean  "send_weekly_email",   default: true
     t.text     "last_email_contents"
+    t.boolean  "public_chart"
+    t.string   "slug"
   end
 
 end

@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
   attr_accessor :password
+  attr_readonly :slug
+
   before_save :encrypt_password
   before_save :downcase_email
+  before_create :generate_slug
 
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
@@ -19,6 +22,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  private
+
   def downcase_email
     self.email = self.email.downcase
   end
@@ -28,5 +33,9 @@ class User < ActiveRecord::Base
       self.password_salt = BCrypt::Engine.generate_salt
       self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
     end
+  end
+
+  def generate_slug
+    self.slug = Base64.encode64(SecureRandom.uuid)[0..10]
   end
 end

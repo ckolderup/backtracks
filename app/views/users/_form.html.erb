@@ -34,9 +34,18 @@
 
   <div class="row">
     <div class="three columns">
-    <%= f.label :send_weekly_email do %>
+      <%= f.label :send_weekly_email do %>
         <%= f.check_box :send_weekly_email %>
         Send weekly email
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="three columns">
+      <%= f.label :public_chart do %>
+        <%= f.check_box :public_chart %>
+        Allow anyone with the URL to see my latest Backtracks
       <% end %>
     </div>
   </div>
