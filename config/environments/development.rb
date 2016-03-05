@@ -34,4 +34,18 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :authentication => :plain,
+    :address => "smtp.mailgun.org",
+    :port => 587,
+    :domain => ENV['MAILGUN_DOMAIN'],
+    :user_name => "postmaster@#{ENV['MAILGUN_DOMAIN']}",
+    :password => ENV['MAILGUN_SMTP_PASSWORD']
+  }
+
+  # http://stackoverflow.com/questions/15490327/how-do-i-get-full-url-to-an-image-in-a-rails-asynchronous-mailer
+  config.action_controller.asset_host = 'localhost:5000'
+  config.action_mailer.asset_host     = 'http://localhost:5000'
 end
