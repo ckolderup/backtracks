@@ -18,7 +18,6 @@ module Email
 
       client = Mailgun::Client.new ENV['MAILGUN_API_KEY']
 
-      mailer = Mandrill::API.new ENV['MANDRILL_API_KEY']
       config = {
         :html => body,
         :from => "Backtracks <feedback@backtracks.co>",
