@@ -41,6 +41,7 @@ gem 'foreman'
 
 gem 'redis'
 gem 'resque'
+gem 'resque-web', require: 'resque_web'
 
 gem 'nokogiri', '~> 1.5.11'
 
