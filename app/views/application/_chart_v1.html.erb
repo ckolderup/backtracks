@@ -1,0 +1,71 @@
+<% years.each do |year| %>
+  <% next if year[:album_rows].empty? %>
+  <h2>
+    <%= "#{Time.now.strftime('%B')} #{Time.now.year - year[:num]}" %>
+  </h2>
+  <table style="padding: 25px 28px;">
+    <th colspan="3">
+      <h3>Albums</h3>
+    </th>
+    <% year[:album_rows].each do |row| %>
+      <tr>
+        <% row[:albums].each do |album| %>
+          <% album_text = "#{album.artist} - #{album.title}" %>
+          <td>
+            <a href="<%= album.url %>">
+              <%= image_tag album.cover, alt: album_text, height: 160, title: album_text, width: 160 %>
+            </a>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+  <table style="width: 550px;">
+    <tr>
+      <th>
+        <h3>Artists</h3>
+      </th>
+      <th>
+        <h3>Tracks</h3>
+      </th>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+        <% if year[:artists].empty? %>
+          <center>
+            <small>No Data</small>
+          </center>
+        <% else %>
+          <ol style="list-style-position: inside; width: 195px; padding: 0px;">
+            <% year[:artists].each do |artist| %>
+              <li style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
+                <a title="<%= artist.name %>" style="color: #1EAEDB; text-decoration: none;" href="<%= artist.url %>">
+                  <%= artist.name %>
+                </a>
+              </li>
+            <% end %>
+          </ol>
+        <% end %>
+      </td>
+      <td style="vertical-align: top;">
+        <% if year[:tracks].empty? %>
+          <center>
+            <small>No Data</small>
+          </center>
+        <% else %>
+          <ol style="list-style-position: inside; width: 345px; padding: 0px;">
+            <% year[:tracks].each do |track| %>
+              <% track_title = "#{track.artist} - #{track.title}" %>
+              <li style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
+                <a title="<%= track_title %>" style="color: #1EAEDB; text-decoration: none;" href="<%= track.url %>">
+                  <%= track_title %>
+                </a>
+              </li>
+            <% end %>
+          </ol>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+  <hr/>
+<% end %>

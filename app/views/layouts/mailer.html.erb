@@ -1,0 +1,15 @@
+<html>
+  <body style="width: 550px; margin: 10px auto; font-family:Helvetica Neue,sans-serif">
+    <a href="http://backtracks.co" style="text-decoration: none;">
+      <center>
+        <%= image_tag 'backtracks-small.png', style: 'display: inline; height: 50px; vertical-align: middle;' %>
+        <h1 style="display: inline; color: #1EAEDB; height: 50px; font-size: 32px; vertical-align: middle;">Backtracks</h1>
+      </center>
+    </a>
+    <%= yield %>
+    <div style="font-size: 10px">
+      You can unsubscribe from your <%= link_to 'Account', account_path %> page.
+      Feedback? Just reply to this email.
+    </div>
+  </body>
+</html>
