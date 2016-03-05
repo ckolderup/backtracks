@@ -1,0 +1,13 @@
+<h1>Recover Password</h1>
+
+<%= form_tag create_password_recovery_path do %>
+  <div class="row">
+    <%= label_tag :email, 'Email address' %>
+    <%= text_field_tag :email, params[:email] %>
+  </div>
+
+  <div class="row">
+    <%= submit_tag "Send email", class: 'button button-primary' %>
+  </div>
+<% end %>
+

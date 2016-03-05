@@ -26,7 +26,7 @@ class UsersController < ApplicationController
       cookies.permanent.signed[:user_id] = user.id
       flash[:message] = "Signed up!"
 
-      Resque.enqueue(ResqueJobs::EmailChart, user)
+      Resque.enqueue(EmailChart, user)
       redirect_to account_path
     else
       render "new"

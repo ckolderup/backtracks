@@ -1,0 +1,16 @@
+<%= form_for @recovery, url: { controller: 'password_recoveries', action: 'reset'}
+  do |f| %>
+  <%= hidden_field(:user, :email) %>
+  <%= hidden_field(:recovery, :token) %>
+  <div class="row">
+    <%= f.label :new_password %>
+    <%= f.password_field :password, autocomplete: 'off' %>
+  </div>
+  <div class="row">
+    <%= f.label :confirm_new_password %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div class="row">
+    <%= f.submit "Reset Password", class: 'button button-primary'%>
+  </div>
+<% end %>
