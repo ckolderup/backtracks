@@ -6,7 +6,7 @@ namespace :email do
 
   desc "Send a test email for a given lastfm username (EMAIL=, USERNAME=)"
   task :send_test => :environment do |t, args|
-    user = User.find_by_lastfm_username(lastfm_username: ENV['USERNAME'])
-    ChartMailer.v1(user, ENV['EMAIL'])
+    user = User.find_by_lastfm_username(ENV['USERNAME'])
+    ChartMailer.v1(user, ENV['EMAIL']).deliver
   end
 end
