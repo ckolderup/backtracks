@@ -11,6 +11,11 @@ Rails.application.routes.draw do
   get "latest" => "home#latest", as: 'latest_pending_redirect'
   get "latest/:slug" => "home#latest", as: 'latest'
 
+  get '/recover_password' => 'password_recoveries#new', as: 'recover_password'
+  post '/recover_password' => 'password_recoveries#create', as: 'create_password_recovery'
+  get '/reset_password' => 'password_recoveries#lookup', as: 'lookup_password_recovery'
+  post '/reset_password' => 'password_recoveries#reset', as: 'reset_password'
+
   root to: "home#index"
 
   resources :sessions

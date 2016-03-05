@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302224839) do
+ActiveRecord::Schema.define(version: 20160305204337) do
+
+  create_table "password_recovery_tokens", force: true do |t|
+    t.integer  "user_id"
+    t.string   "token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "password_recovery_tokens", ["user_id"], name: "index_password_recovery_tokens_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email"
