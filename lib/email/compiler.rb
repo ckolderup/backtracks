@@ -30,7 +30,7 @@ module Email
 
       if years.select { |y| y[:album_rows].present? }.present?
         {
-          email: render_local('weekly_v1', {years: years}),
+          email: render_local('weekly_v1', {years: years}).to_str,
           chart: render_local('_chart_v1', {years: years})
         }
       else
