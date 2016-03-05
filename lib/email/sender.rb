@@ -1,7 +1,5 @@
 module Email
   class Sender
-    require 'mailgun'
-
     @queue = 'weekly'
 
     def self.perform(user, subject)
@@ -16,7 +14,12 @@ module Email
     def self.send_email(email_address, subject, body)
       raise "empty email" if body.nil?
 
-      client = Mailgun::Client.new ENV['MAILGUN_API_KEY']
+      Mailgun.configure do |config|
+        config.api_key = ENV['MAILGUN_API_KEY']
+        config.domain = 'mailer.backtracks.co'
+      end
+
+      mailgun = Mailgun()
 
       config = {
         :html => body,
@@ -25,8 +28,7 @@ module Email
         :to => email_address
       }
 
-      result = client.send_message "backtracks.co", config
-      (result.first)[:status] == "sent"
+      mailgun.messages.send_email(config)
     end
   end
 end

@@ -35,7 +35,7 @@ gem 'unicorn'
 
 gem 'lastfm-client', :git => 'http://github.com/pch/lastfm-client.git'
 
-gem 'mailgun-ruby'
+gem 'mailgun'
 gem 'pg'
 gem 'foreman'
 
