@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get '/recover_password' => 'password_recoveries#new', as: 'recover_password'
   post '/recover_password' => 'password_recoveries#create', as: 'create_password_recovery'
   get '/reset_password' => 'password_recoveries#lookup', as: 'lookup_password_recovery'
-  post '/reset_password' => 'password_recoveries#reset', as: 'reset_password'
+  patch '/reset_password' => 'password_recoveries#reset', as: 'reset_password'
 
   root to: "home#index"
 

@@ -1,8 +1,7 @@
 class EmailChart
   @queue = :weekly
 
-  def self.perform(user)
-    contents = ChartMailer.v1(user).deliver
-    user.update(last_email_contents: contents)
+  def self.perform(user_id)
+    message = ChartMailer.v1(user_id).deliver
   end
 end

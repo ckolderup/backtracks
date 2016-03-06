@@ -1,5 +1,6 @@
 class ChartMailer < ApplicationMailer
-  def v1(user, email_override=nil)
+  def v1(user_id, email_override=nil)
+    user = User.find(user_id)
     years = Charts.v1(user.lastfm_username)
     return if years.empty?
 

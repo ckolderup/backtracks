@@ -8,7 +8,8 @@
     </a>
     <%= yield %>
     <div style="font-size: 10px">
-      You can unsubscribe from your <%= link_to 'Account', account_path %> page.
+      You can unsubscribe from your <%= link_to 'Account', controller: 'users', action: 'edit',
+                                        only_path: false %> page.
       Feedback? Just reply to this email.
     </div>
   </body>

@@ -1,4 +1,8 @@
-This should be a password recovery email. Dunno if it works!
+<p>Hi,</p>
 
-<%= link_to 'Reset password',
-    lookup_password_recovery_path(token: recovery.token) %>
+<p>Someone requested a password reset on your Backtracks account. If this wasn't you, you don't need to do anything. If it was you, please follow the link below to set a new password: </p>
+
+<p><%= link_to 'Reset password', controller: 'password_recoveries', action: 'lookup',
+       only_path: false, params: {token: token.token} %></p>
+
+<p>Thanks for using Backtracks!</p>

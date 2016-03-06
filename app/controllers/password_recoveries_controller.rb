@@ -6,33 +6,34 @@ class PasswordRecoveriesController < ApplicationController
     params.permit(:email)
     user = User.find_by_email(params[:email])
 
-    recovery = PasswordRecoveryToken.create(user_id: user.id)
+    recovery = PasswordRecoveryToken.create(user: user)
 
-    Resque.enqueue(PasswordReset, recovery)
+    Resque.enqueue(PasswordReset, recovery.id)
 
     flash[:message] ='Thanks! An email will be sent with further instructions.'
-    redirect_to root_path
+    redirect_to log_in_path
   end
 
   def lookup
-    @recovery = PasswordRecoveryToken.find(password_recovery_params)
+    @recovery = PasswordRecoveryToken.find_by_token(params[:token])
 
     if @recovery.present?
       @user = @recovery.user
 
       render :reset and return
     else
-      flash[:warning] = "Invalid recovery token. If you were trying to reset a password, please generate a new password recovery email."
-      redirect_to root
+      flash[:warning] = "Invalid recovery token. If you were trying to reset a password, please request a new password reset email."
+      redirect_to log_in_path
     end
   end
 
   def reset
-    @recovery = PasswordRecoveryToken.find(password_recovery_params)
+    @recovery = PasswordRecoveryToken.find_by_token(params[:recovery_token])
 
     if @recovery.present? &&
-       @recovery.user.email == params[:"user[email]"] &&
-       @recovery.user.update(user_params)
+       @recovery.user.email == params[:email] &&
+       params[:password] == params[:password_confirmation] &&
+       @recovery.user.update(password: params[:password])
     then
       @recovery.destroy
       flash[:message] = 'Password reset! Please log in with your new password.'
