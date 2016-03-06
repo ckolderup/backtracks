@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   attr_accessor :password
   attr_readonly :slug
 
+  serialize :last_email_contents, Array
+
   before_save :encrypt_password
   before_save :downcase_email
   before_update { |user| user.send(:bump_last_email_updated) if user.last_email_contents_changed? }

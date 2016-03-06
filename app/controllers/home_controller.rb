@@ -14,16 +14,19 @@ class HomeController < ApplicationController
 
     this_user = User.where(slug: params[:slug]).first
 
+    @years = []
+    flash[:message] = "We're currently processing this user's charts! Check back in a few minutes."
     if this_user.present? && (this_user.public_chart? || current_user == this_user)
-      if this_user.last_email_contents.blank? ||
+      if params[:force] ||
          this_user.last_email_updated_at.nil? ||
-         (this_user.last_email_updated_at < 1.week.ago) ||
-         params[:force]
-        html = Email::Compiler.chart_v1(current_user.lastfm_username)[:chart]
-        current_user.update(last_email_contents: html)
+         (this_user.last_email_contents.blank? &&
+          this_user.last_email_updated_at < 1.week.ago)
+        Resque.enqueue(CacheChart, this_user.id)
+      else
+        @years = this_user.last_email_contents
+        flash[:message] = nil
       end
 
-      @email = this_user.last_email_contents.html_safe
       @lastfm_user = this_user.lastfm_username
       render and return
     else

@@ -10,10 +10,10 @@
     <% year[:album_rows].each do |row| %>
       <tr>
         <% row[:albums].each do |album| %>
-          <% album_text = "#{album.artist} - #{album.title}" %>
+          <% album_text = "#{album[:artist]} - #{album[:title]}" %>
           <td>
-            <a href="<%= album.url %>">
-              <%= image_tag album.cover, alt: album_text, height: 160, title: album_text, width: 160 %>
+            <a href="<%= album[:url] %>">
+              <%= image_tag album[:cover], alt: album_text, height: 160, title: album_text, width: 160 %>
             </a>
           </td>
         <% end %>
@@ -39,8 +39,8 @@
           <ol style="list-style-position: inside; width: 195px; padding: 0px;">
             <% year[:artists].each do |artist| %>
               <li style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
-                <a title="<%= artist.name %>" style="color: #1EAEDB; text-decoration: none;" href="<%= artist.url %>">
-                  <%= artist.name %>
+                <a title="<%= artist[:name] %>" style="color: #1EAEDB; text-decoration: none;" href="<%= artist[:url] %>">
+                  <%= artist[:name] %>
                 </a>
               </li>
             <% end %>
@@ -55,9 +55,9 @@
         <% else %>
           <ol style="list-style-position: inside; width: 345px; padding: 0px;">
             <% year[:tracks].each do |track| %>
-              <% track_title = "#{track.artist} - #{track.title}" %>
+              <% track_title = "#{track[:artist] } - #{track[:title] }" %>
               <li style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
-                <a title="<%= track_title %>" style="color: #1EAEDB; text-decoration: none;" href="<%= track.url %>">
+                <a title="<%= track_title %>" style="color: #1EAEDB; text-decoration: none;" href="<%= track[:url] %>">
                   <%= track_title %>
                 </a>
               </li>

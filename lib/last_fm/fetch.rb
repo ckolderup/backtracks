@@ -29,7 +29,8 @@ module LastFm
     end
 
     def new_artist(artist)
-      Artist.new(:name => artist['name'], :url => artist['url'])
+      { name: artist['name'],
+        url: artist['url'].start_with?('http://') ? artist['url'] : "http://#{artist['url']}" }
     end
 
     def new_album(album)
@@ -37,16 +38,20 @@ module LastFm
                              :album => album['name'],
                              :mbid => album['mbid'],
                              :url => album['url'])
-      Album.new(:title => album['name'],
-                :artist => album['artist']['#text'],
-                :url => album['url'],
-                :cover => (response['album']['image'].select{|img| img['size'] == 'large'}.first)['#text'])
+      {
+        :title => album['name'],
+        :artist => album['artist']['#text'],
+        :url => album['url'].start_with?('http://') ? album['url'] : "http://#{album['url']}",
+        :cover => (response['album']['image'].select{|img| img['size'] == 'large'}.first)['#text'] || 'http://backtracks.co/public/images/backtracks-greyscale-medium.png' #TODO: return nil and push this into the mailer where we can generate a thumbprinted asset tag
+      }
     end
 
     def new_track(track)
-      Track.new(:title => track['name'],
-                :artist => track['artist']['#text'],
-                :url => track['url'])
+      {
+        :title => track['name'],
+        :artist => track['artist']['#text'],
+        :url => track['url'].start_with?('http://') ? track['url'] : "http://#{track['url']}"
+      }
     end
 
     def get_charts(params = {})
