@@ -48,4 +48,5 @@ Rails.application.configure do
   # http://stackoverflow.com/questions/15490327/how-do-i-get-full-url-to-an-image-in-a-rails-asynchronous-mailer
   config.action_controller.asset_host = 'localhost:5000'
   config.action_mailer.asset_host     = 'http://localhost:5000'
+  config.action_mailer.default_url_options = { host: 'http://localhost:5000' }
 end
