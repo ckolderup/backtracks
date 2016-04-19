@@ -80,4 +80,9 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # http://stackoverflow.com/questions/15490327/how-do-i-get-full-url-to-an-image-in-a-rails-asynchronous-mailer
+  config.action_controller.asset_host = 'beta.backtracks.co'
+  config.action_mailer.asset_host     = 'http://beta.backtracks.co'
+  config.action_mailer.default_url_options = { host: 'http://beta.backtracks.co' }
 end
