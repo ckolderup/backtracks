@@ -5,6 +5,8 @@ stderr_path "#{root}/log/unicorn.log"
 stdout_path "#{root}/log/unicorn.log"
 
 listen "/tmp/unicorn.backtracks.sock"
+listen "127.0.0.1:#{ENV['PORT']}", tcp_nopush: true
+
 worker_processes 2
 timeout 30
 
