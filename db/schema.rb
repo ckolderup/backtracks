@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160305204337) do
+ActiveRecord::Schema.define(version: 20160419235500) do
 
   create_table "password_recovery_tokens", force: true do |t|
     t.integer  "user_id"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20160305204337) do
     t.boolean  "public_chart"
     t.string   "slug"
     t.datetime "last_email_updated_at"
+    t.boolean  "admin",                 default: false, null: false
   end
 
 end

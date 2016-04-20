@@ -1,7 +1,7 @@
 require 'resque/server'
 
 Rails.application.routes.draw do
-  mount Resque::Server.new, at: '/resque'
+  #mount ResqueWeb::Engine => "/resque" # disable until you figure out how to get HTTP auth working with resque-web
 
   get "log_out" => "sessions#destroy", as: "log_out"
   get "log_in" => "sessions#new", as: "log_in"
