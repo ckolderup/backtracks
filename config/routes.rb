@@ -1,7 +1,14 @@
 require 'resque/server'
 
 Rails.application.routes.draw do
-  #mount ResqueWeb::Engine => "/resque" # disable until you figure out how to get HTTP auth working with resque-web
+  resque_web_constraint = lambda do |request|
+    current_user = User.where(id: request.cookie_jar.signed[:user_id] || 0).first
+    current_user.present? && current_user.respond_to?(:admin?) && current_user.admin?
+  end
+
+  constraints resque_web_constraint do
+    mount ResqueWeb::Engine => "/resque"
+  end
 
   get "log_out" => "sessions#destroy", as: "log_out"
   get "log_in" => "sessions#new", as: "log_in"
