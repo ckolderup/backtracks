@@ -5,7 +5,7 @@ namespace :jobs do
     users = Users.where('id % ? = 0', p).and(send_weekly_email: true)
 
     users.each do |u|
-      Resque.enqueue(EmailChart, u)
+      Resque.enqueue(EmailChart, u.id)
     end
   end
 end
