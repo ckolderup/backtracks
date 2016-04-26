@@ -8,7 +8,7 @@ class PasswordRecoveriesController < ApplicationController
 
     recovery = PasswordRecoveryToken.create(user: user)
 
-    Resque.enqueue(PasswordReset, recovery.id)
+    Resque.enqueue(PasswordReset, recovery.id, params[:email])
 
     flash[:message] ='Thanks! An email will be sent with further instructions.'
     redirect_to log_in_path
