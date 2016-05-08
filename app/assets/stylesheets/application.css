@@ -42,3 +42,15 @@
 .footer {
   text-align: center;
 }
+
+.flash {
+  width: 50%;
+  text-align: center;
+  border-radius: 10px;
+  margin: auto;
+  padding: 10px;
+}
+
+#flash_message { background-color: rgb(75, 225, 115);  }
+#flash_warning { background-color: rgb(250, 235, 135); }
+#flash_error   { background-color: rgb(220, 75, 140);  }
