@@ -42,7 +42,7 @@ module LastFm
         :title => album['name'],
         :artist => album['artist']['#text'],
         :url => album['url'].start_with?('http://') ? album['url'] : "http://#{album['url']}",
-        :cover => (response['album']['image'].select{|img| img['size'] == 'large'}.first)['#text'] || 'http://backtracks.co/public/images/backtracks-greyscale-medium.png' #TODO: return nil and push this into the mailer where we can generate a thumbprinted asset tag
+        :cover => (response['album']['image'].select{|img| img['size'] == 'large'}.first)['#text']
       }
     end
 
