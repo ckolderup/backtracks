@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_presence_of :display_name
   validates_presence_of :lastfm_username
-  validates_uniqueness_of :email, case_sensitive: false
+  validates_uniqueness_of :email, case_sensitive: false, message: 'address already reserved. Did you forget your password?'
 
   def self.authenticate(email, password)
     user = User.where(email: email.downcase).take
