@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   skip_after_filter :store_return_to
   before_filter :ensure_logged_in, only: [:update, :edit]
+  before_filter :to_account_page_if_logged_in, only: [:new, :create]
 
   def new
     @user = User.new

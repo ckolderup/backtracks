@@ -17,6 +17,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # various routes shouldn't work if you're logged in
+  # (log in, sign up, etc)
+  def to_account_page_if_logged_in
+    redirect_to account_path if current_user
+  end
+
   def redirect_back_or_default(default)
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
