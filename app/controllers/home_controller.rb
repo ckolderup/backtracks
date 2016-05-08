@@ -15,7 +15,7 @@ class HomeController < ApplicationController
     this_user = User.where(slug: params[:slug]).first
 
     @years = []
-    flash[:message] = "We're currently processing this user's charts! Check back in a few minutes."
+    flash[:message] = "We're currently processing these charts! Check back in a few minutes."
     if this_user.present? && (this_user.public_chart? || current_user == this_user)
       if params[:force] ||
          this_user.last_email_updated_at.nil? ||
