@@ -1,10 +1,6 @@
 <div class="copy">
   <div class="row">
-    Welcome to Backtracks, an email service that uses your last.fm history to help you discover the music that's been important to you in the past.
-  </div>
-
-  <div class="row">
-    Once a week, we'll send you an email that shows you the albums, artists and songs that you listened to the most at this time of year in your past.
+    Welcome to Backtracks, an email service that uses your last.fm history to help you discover the music that's been important to you in the past. Once a week, we'll send you an email that shows you the albums, artists and songs that you listened to the most at this time of year throughout your music listening history.
   </div>
 
   <div class="row">
@@ -17,7 +13,9 @@
 
   <% if current_user %>
     <div class="row">
-      <%= link_to 'Manage Account', account_path, class: 'button button-primary' %>
+      <div class="four columns">&nbsp;</div>
+      <div class="four columns"><%= link_to 'Manage Account', account_path, class: 'button button-primary' %></div>
+      <div class="four columns">&nbsp;</div>
     </div>
   <% else %>
     <div class="row">
