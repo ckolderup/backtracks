@@ -4,6 +4,17 @@ module LastFm
     LASTFM_ALBUM = "get_weekly_album_chart"
     LASTFM_TRACK = "get_weekly_track_chart"
 
+    def fix_url(url)
+      if url.starts_with?('https//')
+        url.gsub('https//', 'https://')
+      elsif url.starts_with?('http://') ||
+            url.starts_with?('https://')
+        url
+      else
+        url.prepend('http://')
+      end
+    end
+
     def fetch_chart(param = {})
       method = param[:method]
       user = param[:user]
@@ -30,7 +41,7 @@ module LastFm
 
     def new_artist(artist)
       { name: artist['name'],
-        url: artist['url'].start_with?('http://') ? artist['url'] : "http://#{artist['url']}" }
+        url: fix_url(artist['url']) }
     end
 
     def new_album(album)
@@ -41,7 +52,7 @@ module LastFm
       {
         :title => album['name'],
         :artist => album['artist']['#text'],
-        :url => album['url'].start_with?('http://') ? album['url'] : "http://#{album['url']}",
+        :url => fix_url(album['url']),
         :cover => (response['album']['image'].select{|img| img['size'] == 'large'}.first)['#text']
       }
     end
@@ -50,7 +61,7 @@ module LastFm
       {
         :title => track['name'],
         :artist => track['artist']['#text'],
-        :url => track['url'].start_with?('http://') ? track['url'] : "http://#{track['url']}"
+        :url => fix_url(track['url'])
       }
     end
 
