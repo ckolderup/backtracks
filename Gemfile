@@ -1,9 +1,9 @@
-ruby '2.1.2'
+ruby '2.4.0'
 source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.1'
+gem 'rails', '4.2.7.1'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
@@ -43,7 +43,7 @@ gem 'redis'
 gem 'resque'
 gem 'resque-web', require: 'resque_web'
 
-gem 'nokogiri', '~> 1.5.11'
+gem 'nokogiri', '~> 1.8.1'
 
 gem 'skeleton-rails', '~> 1.0', :git => 'https://github.com/helios-technologies/skeleton-rails.git'
 
