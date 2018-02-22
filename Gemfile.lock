@@ -103,7 +103,7 @@ GEM
     multi_json (1.13.1)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
-    pg (1.0.0)
+    pg (0.21.0)
     rack (1.6.8)
     rack-protection (1.5.4)
       rack
@@ -210,7 +210,7 @@ DEPENDENCIES
   lastfm-client!
   mailgun
   nokogiri (~> 1.8.1)
-  pg
+  pg (~> 0.18)
   rails (= 4.2.10)
   redis
   resque
