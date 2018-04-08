@@ -1,6 +1,6 @@
 class PasswordRecoveryToken < ActiveRecord::Base
-  validate :token, presence: true
-  validate :user, presence: true
+  validates :token, presence: true
+  validates :user, presence: true
 
   belongs_to :user
 

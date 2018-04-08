@@ -1,4 +1,4 @@
-ruby '2.2.2'
+ruby '2.4.2'
 source 'https://rubygems.org'
 
 
@@ -34,7 +34,7 @@ gem 'unicorn'
 gem 'lastfm-client', :git => 'http://github.com/pch/lastfm-client.git'
 
 gem 'mailgun'
-gem 'pg'
+gem 'pg', '~> 0.18'
 gem 'foreman'
 
 gem 'redis'

@@ -4,12 +4,15 @@
 
 .copy {
   font-size: 24px;
-  text-align: center;
 }
 
 .copy div {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.copy .centered {
+  text-align: center;
 }
 
 .email table * {
