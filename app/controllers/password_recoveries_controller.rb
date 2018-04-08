@@ -1,5 +1,5 @@
 class PasswordRecoveriesController < ApplicationController
-  before_filter :to_account_page_if_logged_in
+  before_action :to_account_page_if_logged_in
 
   def new
   end

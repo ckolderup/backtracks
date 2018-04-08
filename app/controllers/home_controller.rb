@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_filter :ensure_logged_in, only: :this_week
+  before_action :ensure_logged_in, only: :this_week
   def index
   end
 

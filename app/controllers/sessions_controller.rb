@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
-  skip_after_filter :store_return_to
-  before_filter :to_account_page_if_logged_in, except: :destroy
+  skip_after_action :store_return_to
+  before_action :to_account_page_if_logged_in, except: :destroy
 
   def new
   end

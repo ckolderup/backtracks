@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
-  after_filter :store_return_to
+  after_action :store_return_to
 
   protected
 

@@ -1,17 +1,15 @@
-ruby '2.1.2'
+ruby '2.2.2'
 source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.1'
+gem 'rails', '5.1.6'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', '~> 5.0.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
@@ -42,8 +40,6 @@ gem 'foreman'
 gem 'redis'
 gem 'resque'
 gem 'resque-web', require: 'resque_web'
-
-gem 'nokogiri', '~> 1.5.11'
 
 gem 'skeleton-rails', '~> 1.0', :git => 'https://github.com/helios-technologies/skeleton-rails.git'
 
